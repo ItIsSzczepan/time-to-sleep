@@ -2,5 +2,43 @@
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
+  },
+  "h12": "12 am",
+  "@h12": {
+    "description": "12 hours format"
+  },
+  "h24": "24",
+  "@h24": {
+    "description": "24 hours format"
+  },
+  "iWant": "I want",
+  "@iWant": {
+    "description": "\"I want\" text, used in home screen form"
+  },
+  "at": "at",
+  "@at": {
+    "description": "text between selecting hour and type"
+  },
+  "sleepNowButton": "GO TO SLEEP NOW",
+  "@sleepNowButton": {
+    "description": "Text on button for function goToSleepNow()"
+  },
+  "shouldWake": "You should {type} at",
+  "@shouldWake": {
+    "description": "Result Text",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "Wake Up"
+      }
+    }
+  },
+  "wakeUp": "Wake up",
+  "@wakeUp": {
+    "description": "\"Wake up\" text"
+  },
+  "goToSleep": "Go to sleep",
+  "@goToSleep": {
+    "description": "\"Go to sleep\" text"
   }
 }
