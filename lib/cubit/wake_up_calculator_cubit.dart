@@ -7,7 +7,7 @@ part 'wake_up_calculator_state.dart';
 
 class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
   WakeUpCalculatorCubit({required this.clock})
-      : super(WakeUpCalculatorInitial()) {
+      : super(WakeUpCalculatorInitial(clock.now())) {
     _time = clock.now();
   }
 

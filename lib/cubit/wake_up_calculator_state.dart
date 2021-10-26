@@ -5,8 +5,12 @@ abstract class WakeUpCalculatorState extends Equatable {
 }
 
 class WakeUpCalculatorInitial extends WakeUpCalculatorState {
+  final DateTime time;
+
+  const WakeUpCalculatorInitial(this.time);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [time];
 }
 
 class WakeUpCalculatorUpdate extends WakeUpCalculatorState{
