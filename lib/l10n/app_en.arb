@@ -40,5 +40,9 @@
   "goToSleep": "Go to sleep",
   "@goToSleep": {
     "description": "\"Go to sleep\" text"
+  },
+  "calculateButton": "Calculate",
+  "@calculateButton": {
+    "description": "Button to submit form"
   }
 }
