@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:projekty/cubit/wake_up_calculator_cubit.dart';
+import 'package:projekty/widgets/wake_up_calculator_form.dart';
+import 'package:projekty/widgets/wake_up_calculator_result.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,8 +11,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(AppLocalizations.of(context)!.helloWorld),
+      appBar: AppBar(
+        leading: IconButton(icon: const Icon(Icons.info_outline), onPressed: () {  },),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            WakeUpCalculatorForm(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context)),
+            WakeUpCalculatorResultWidget(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context))
+          ],
+        ),
       ),
     );
   }
