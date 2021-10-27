@@ -14,7 +14,7 @@ class WakeUpCalculatorInitial extends WakeUpCalculatorState {
 }
 
 class WakeUpCalculatorUpdate extends WakeUpCalculatorState{
-  final HourFormat hourFormat;
+  final HourFormatType hourFormat;
   final CalculatingType calculatingType;
   final DateTime time;
 
@@ -34,3 +34,4 @@ class WakeUpCalculatorResult extends WakeUpCalculatorState{
   List<Object> get props => [results, calculatingType];
 
 }
+

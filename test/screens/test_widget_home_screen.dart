@@ -12,7 +12,7 @@ void main(){
   group("check if form fields are displaying", (){
     late final MaterialApp baseWidget;
 
-    setUp((){
+    setUpAll((){
       baseWidget = MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -71,7 +71,7 @@ void main(){
   {
     late final MaterialApp baseWidget;
 
-    setUp(() {
+    setUpAll(() {
       baseWidget = MaterialApp(
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
