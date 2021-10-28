@@ -52,7 +52,7 @@ void main(){
     testWidgets("check if GoToSleepNowButton is displaying", (WidgetTester tester) async{
       await tester.pumpWidget(baseWidget);
 
-      final findHour = find.widgetWithText(TextButton, AppLocalizationsEn().sleepNowButton);
+      final findHour = find.widgetWithText(ElevatedButton, AppLocalizationsEn().sleepNowButton);
 
       expect(findHour, findsOneWidget);
     });
