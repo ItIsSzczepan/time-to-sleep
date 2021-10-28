@@ -89,7 +89,7 @@ void main(){
       final findHourButton = find.byKey(const Key("HourButton"));
       await tester.tap(findHourButton);
       await tester.pump(const Duration(milliseconds: 50));
-      await tester.pageBack();
+      await tester.tapAt(Offset.zero);
       await tester.pump();
 
       final findSameHourOnButton = find.widgetWithText(TextButton, "20:30");
@@ -143,6 +143,7 @@ void main(){
       final findCalculateButton = find.byKey(const Key("CalculateButton"));
       final findWakeUpButton = find.byKey(const Key("WakeUpButton"));
       await tester.tap(findWakeUpButton);
+      await tester.pump(const Duration(seconds: 2));
       await tester.tap(findCalculateButton);
       await tester.pump(const Duration(milliseconds: 2000));
 
@@ -158,7 +159,7 @@ void main(){
       }
     });
 
-    testWidgets("submit initial", (WidgetTester tester) async{
+    testWidgets("test sleep now funciton", (WidgetTester tester) async{
       await tester.pumpWidget(baseWidget);
 
       final findSleepNowButton = find.byKey(const Key("SleepNowButton"));

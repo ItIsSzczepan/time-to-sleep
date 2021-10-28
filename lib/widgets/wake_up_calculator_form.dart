@@ -52,13 +52,13 @@ class WakeUpCalculatorForm extends StatelessWidget {
                     ToggleButtons(
                       isSelected: selectedHourFormatType,
                       children: [
-                        Text(AppLocalizations.of(context)!.h12),
-                        Text(AppLocalizations.of(context)!.h24)
+                        Text(AppLocalizations.of(context)!.h12, key: const Key("h12"),),
+                        Text(AppLocalizations.of(context)!.h24, key: const Key("h24"),)
                       ],
                       onPressed: (value) {
                         if (!selectedHourFormatType[value]) {
                           cubit.changeHourFormat(
-                              (state as WakeUpCalculatorUpdate).hourFormat ==
+                              hourFormat ==
                                       HourFormatType.h12
                                   ? HourFormatType.h24
                                   : HourFormatType.h12);
@@ -69,14 +69,13 @@ class WakeUpCalculatorForm extends StatelessWidget {
                     ToggleButtons(
                       isSelected: selectedCalculatingType,
                       children: [
-                        Text(AppLocalizations.of(context)!.wakeUp),
-                        Text(AppLocalizations.of(context)!.goToSleep)
+                        Text(AppLocalizations.of(context)!.wakeUp, key: const Key("WakeUpButton")),
+                        Text(AppLocalizations.of(context)!.goToSleep, key: const Key("GoToSleepButton"))
                       ],
                       onPressed: (value) {
                         if (!selectedCalculatingType[value]) {
                           cubit.changeCalculatingType(
-                              (state as WakeUpCalculatorUpdate)
-                                          .calculatingType ==
+                              calculatingType ==
                                       CalculatingType.WakeUp
                                   ? CalculatingType.GoToSleep
                                   : CalculatingType.WakeUp);
@@ -85,11 +84,12 @@ class WakeUpCalculatorForm extends StatelessWidget {
                     ),
                     Text(AppLocalizations.of(context)!.at),
                     TextButton(
+                        key: const Key("HourButton"),
                         onPressed: () async {
                           TimeOfDay? newTime = await showTimePicker(
                               context: context,
                               initialTime: TimeOfDay.fromDateTime(
-                                  (state as WakeUpCalculatorUpdate).time));
+                                  time));
                           if (newTime != null) {
                             DateTime time = DateTime(
                                 2021, 10, 10, newTime.hour, newTime.minute);
@@ -97,11 +97,16 @@ class WakeUpCalculatorForm extends StatelessWidget {
                           }
                         },
                         child: Text("${time.hour}:${time.minute}")),
-                    TextButton(onPressed: () => cubit.submit(time, calculatingType), child: Text(AppLocalizations.of(context)!.calculateButton))
+                    TextButton(
+                        key: const Key("CalculateButton"),
+                        onPressed: () => cubit.submit(time, calculatingType),
+                        child:
+                            Text(AppLocalizations.of(context)!.calculateButton))
                   ],
                 ),
               ),
               TextButton(
+                key: const Key("SleepNowButton"),
                 onPressed: () {
                   cubit.goToSleepNow();
                 },
