@@ -52,65 +52,96 @@ class WakeUpCalculatorForm extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 20.0),
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     gradient: LinearGradient(
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [Colors.indigoAccent, Colors.indigo],
                         stops: [0.1, 0.9])),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ToggleButtons(
-                      renderBorder: false,
-                      borderRadius: BorderRadius.circular(5.0),
-                      fillColor: Colors.deepOrange,
-                      selectedColor: Colors.white,
-                      isSelected: selectedHourFormatType,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.h12,
-                          key: const Key("h12"),
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.h24,
-                          key: const Key("h24"),
-                        )
-                      ],
-                      onPressed: (value) {
-                        if (!selectedHourFormatType[value]) {
-                          cubit.changeHourFormat(
-                              hourFormat == HourFormatType.h12
-                                  ? HourFormatType.h24
-                                  : HourFormatType.h12);
-                        }
-                      },
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.black12,
+                      ),
+                      child: ToggleButtons(
+                        renderBorder: false,
+                        borderRadius: BorderRadius.circular(5.0),
+                        fillColor: Theme.of(context).colorScheme.secondary,
+                        selectedColor: Theme.of(context).colorScheme.onSecondary,
+                        isSelected: selectedHourFormatType,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              AppLocalizations.of(context)!.h12,
+                              key: const Key("h12"), style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              AppLocalizations.of(context)!.h24,
+                              key: const Key("h24"), style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
+                        onPressed: (value) {
+                          if (!selectedHourFormatType[value]) {
+                            cubit.changeHourFormat(
+                                hourFormat == HourFormatType.h12
+                                    ? HourFormatType.h24
+                                    : HourFormatType.h12);
+                          }
+                        },
+                      ),
                     ),
-                    Text(AppLocalizations.of(context)!.iWant),
-                    ToggleButtons(
-                      renderBorder: false,
-                      borderRadius: BorderRadius.circular(5.0),
-                      fillColor: Colors.cyan,
-                      selectedColor: Colors.white,
-                      isSelected: selectedCalculatingType,
-                      children: [
-                        Text(AppLocalizations.of(context)!.wakeUp,
-                            key: const Key("WakeUpButton")),
-                        Text(AppLocalizations.of(context)!.goToSleep,
-                            key: const Key("GoToSleepButton"))
-                      ],
-                      onPressed: (value) {
-                        if (!selectedCalculatingType[value]) {
-                          cubit.changeCalculatingType(
-                              calculatingType == CalculatingType.WakeUp
-                                  ? CalculatingType.GoToSleep
-                                  : CalculatingType.WakeUp);
-                        }
-                      },
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(AppLocalizations.of(context)!.iWant, style: Theme.of(context).textTheme.headline5,),
                     ),
-                    Text(AppLocalizations.of(context)!.at),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.black12,
+                      ),
+                      child: ToggleButtons(
+                        renderBorder: false,
+                        borderRadius: BorderRadius.circular(5.0),
+                        fillColor: Theme.of(context).colorScheme.secondary,
+                        selectedColor: Theme.of(context).colorScheme.onSecondary,
+                        isSelected: selectedCalculatingType,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(AppLocalizations.of(context)!.wakeUp,
+                                key: const Key("WakeUpButton"), style: Theme.of(context).textTheme.headline6,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(AppLocalizations.of(context)!.goToSleep,
+                                key: const Key("GoToSleepButton"), style: Theme.of(context).textTheme.headline6,),
+                          )
+                        ],
+                        onPressed: (value) {
+                          if (!selectedCalculatingType[value]) {
+                            cubit.changeCalculatingType(
+                                calculatingType == CalculatingType.WakeUp
+                                    ? CalculatingType.GoToSleep
+                                    : CalculatingType.WakeUp);
+                          }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 6.0),
+                      child: Text(AppLocalizations.of(context)!.at, style: Theme.of(context).textTheme.headline5,),
+                    ),
                     TextButton(
-                      style: TextButton.styleFrom(backgroundColor: Colors.white, minimumSize: Size(160.0, 25.0)),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            minimumSize: Size(160.0, 25.0)),
                         key: const Key("HourButton"),
                         onPressed: () async {
                           TimeOfDay? newTime = await showTimePicker(
@@ -122,9 +153,16 @@ class WakeUpCalculatorForm extends StatelessWidget {
                             cubit.changeHour(time);
                           }
                         },
-                        child: Text("${time.hour}:${time.minute}", style: TextStyle(fontSize: 20.0),)),
+                        child: Text(
+                          "${time.hour}:${time.minute}",
+                          style: TextStyle(fontSize: 20.0),
+                        )),
                     TextButton(
-                      style: TextButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary, minimumSize: Size(160.0, 25.0), primary: Theme.of(context).colorScheme.onPrimary ),
+                        style: TextButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            minimumSize: Size(160.0, 25.0),
+                            primary: Theme.of(context).colorScheme.onPrimary),
                         key: const Key("CalculateButton"),
                         onPressed: () => cubit.submit(time, calculatingType),
                         child:
@@ -133,7 +171,11 @@ class WakeUpCalculatorForm extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Theme.of(context).colorScheme.secondary, onPrimary: Theme.of(context).colorScheme.onSecondary),
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).colorScheme.secondary,
+                    onPrimary: Theme.of(context).colorScheme.onSecondary,
+                    fixedSize: Size.fromWidth(350.0),
+                ),
                 key: const Key("SleepNowButton"),
                 onPressed: () {
                   cubit.goToSleepNow();
