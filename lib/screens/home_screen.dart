@@ -10,15 +10,19 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.info_outline), onPressed: () {  },),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(icon: const Icon(Icons.info_outline), onPressed: () {  },),
+                  ],
+                ),
+              ),
               WakeUpCalculatorForm(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context)),
               WakeUpCalculatorResultWidget(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context))
             ],

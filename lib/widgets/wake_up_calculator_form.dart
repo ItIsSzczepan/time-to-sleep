@@ -194,30 +194,19 @@ class WakeUpCalculatorForm extends StatelessWidget {
 
   Widget _goToSleepWidget(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
+      padding: const EdgeInsets.all(4.0),
+      child: ElevatedButton(
         key: const Key("SleepNowButton"),
-        onTap: () {
+        onPressed: () {
           cubit.goToSleepNow();
         },
-        child: Container(
-          alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              gradient: const LinearGradient(colors: [
-                Colors.indigo,
-                Color.fromRGBO(48, 60, 141, 1.0)
-              ], begin: Alignment.topRight, end: Alignment.bottomLeft,
-              stops: [
-                0.1,
-                0.9
-              ]),
-            ),
-            constraints: BoxConstraints.expand(
-              width: MediaQuery.of(context).size.width - 40,
-              height: 35,
-            ),
-            child: Text(AppLocalizations.of(context)!.sleepNowButton, style: TextStyle(fontWeight: FontWeight.w600),)),
+        style: ElevatedButton.styleFrom(
+          fixedSize: Size(MediaQuery.of(context).size.width - 40, 30),
+        ),
+        child: Text(
+          AppLocalizations.of(context)!.sleepNowButton,
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
     );
   }
