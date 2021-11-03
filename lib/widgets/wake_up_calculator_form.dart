@@ -69,21 +69,24 @@ class WakeUpCalculatorForm extends StatelessWidget {
                         renderBorder: false,
                         borderRadius: BorderRadius.circular(5.0),
                         fillColor: Theme.of(context).colorScheme.secondary,
-                        selectedColor: Theme.of(context).colorScheme.onSecondary,
+                        selectedColor:
+                            Theme.of(context).colorScheme.onSecondary,
                         isSelected: selectedHourFormatType,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               AppLocalizations.of(context)!.h12,
-                              key: const Key("h12"), style: TextStyle(fontWeight: FontWeight.bold),
+                              key: const Key("h12"),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               AppLocalizations.of(context)!.h24,
-                              key: const Key("h24"), style: TextStyle(fontWeight: FontWeight.bold),
+                              key: const Key("h24"),
+                              style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           )
                         ],
@@ -99,7 +102,10 @@ class WakeUpCalculatorForm extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(AppLocalizations.of(context)!.iWant, style: Theme.of(context).textTheme.headline5,),
+                      child: Text(
+                        AppLocalizations.of(context)!.iWant,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -110,18 +116,25 @@ class WakeUpCalculatorForm extends StatelessWidget {
                         renderBorder: false,
                         borderRadius: BorderRadius.circular(5.0),
                         fillColor: Theme.of(context).colorScheme.secondary,
-                        selectedColor: Theme.of(context).colorScheme.onSecondary,
+                        selectedColor:
+                            Theme.of(context).colorScheme.onSecondary,
                         isSelected: selectedCalculatingType,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(AppLocalizations.of(context)!.wakeUp,
-                                key: const Key("WakeUpButton"), style: Theme.of(context).textTheme.headline6,),
+                            child: Text(
+                              AppLocalizations.of(context)!.wakeUp,
+                              key: const Key("WakeUpButton"),
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(AppLocalizations.of(context)!.goToSleep,
-                                key: const Key("GoToSleepButton"), style: Theme.of(context).textTheme.headline6,),
+                            child: Text(
+                              AppLocalizations.of(context)!.goToSleep,
+                              key: const Key("GoToSleepButton"),
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
                           )
                         ],
                         onPressed: (value) {
@@ -136,7 +149,10 @@ class WakeUpCalculatorForm extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 6.0),
-                      child: Text(AppLocalizations.of(context)!.at, style: Theme.of(context).textTheme.headline5,),
+                      child: Text(
+                        AppLocalizations.of(context)!.at,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
@@ -170,20 +186,39 @@ class WakeUpCalculatorForm extends StatelessWidget {
                   ],
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).colorScheme.secondary,
-                    onPrimary: Theme.of(context).colorScheme.onSecondary,
-                    fixedSize: Size.fromWidth(350.0),
-                ),
-                key: const Key("SleepNowButton"),
-                onPressed: () {
-                  cubit.goToSleepNow();
-                },
-                child: Text(AppLocalizations.of(context)!.sleepNowButton),
-              )
+              _goToSleepWidget(context)
             ],
           );
         });
+  }
+
+  Widget _goToSleepWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        key: const Key("SleepNowButton"),
+        onTap: () {
+          cubit.goToSleepNow();
+        },
+        child: Container(
+          alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              gradient: const LinearGradient(colors: [
+                Colors.indigo,
+                Color.fromRGBO(48, 60, 141, 1.0)
+              ], begin: Alignment.topRight, end: Alignment.bottomLeft,
+              stops: [
+                0.1,
+                0.9
+              ]),
+            ),
+            constraints: BoxConstraints.expand(
+              width: MediaQuery.of(context).size.width - 40,
+              height: 35,
+            ),
+            child: Text(AppLocalizations.of(context)!.sleepNowButton, style: TextStyle(fontWeight: FontWeight.w600),)),
+      ),
+    );
   }
 }

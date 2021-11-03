@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wake Up Calculator',
       theme: ThemeData(
-        colorScheme: ColorScheme.dark(primary: Colors.blue, onPrimary: Colors.white, secondary: Color.fromRGBO(50, 75, 150, 1.0), onSecondary: Colors.white),
+        colorScheme: const ColorScheme.dark(
+            primary: Color.fromRGBO(24, 50, 127, 1.0),
+            onPrimary: Colors.white,
+            secondary: Color.fromRGBO(34, 60, 137, 1.0),
+            onSecondary: Colors.white),
         brightness: Brightness.dark,
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,

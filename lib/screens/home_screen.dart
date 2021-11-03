@@ -15,12 +15,14 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            WakeUpCalculatorForm(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context)),
-            WakeUpCalculatorResultWidget(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context))
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              WakeUpCalculatorForm(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context)),
+              WakeUpCalculatorResultWidget(cubit: BlocProvider.of<WakeUpCalculatorCubit>(context))
+            ],
+          ),
         ),
       ),
     );
