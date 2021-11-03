@@ -7,16 +7,16 @@ part 'wake_up_calculator_state.dart';
 
 class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
   WakeUpCalculatorCubit({required this.clock})
-      : super(WakeUpCalculatorInitial()) {
+      : super(WakeUpCalculatorInitial(clock.now())) {
     _time = clock.now();
   }
 
   final Clock clock;
-  HourFormat _hourFormat = HourFormat.h24;
+  HourFormatType _hourFormat = HourFormatType.h24;
   DateTime _time = DateTime.now();
   CalculatingType _calculatingType = CalculatingType.GoToSleep;
 
-  void changeHourFormat(HourFormat newHourFormat) {
+  void changeHourFormat(HourFormatType newHourFormat) {
     _hourFormat = newHourFormat;
     _emitUpdateState();
   }
@@ -63,7 +63,7 @@ class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
     List<String> listToReturn = [];
 
     list.forEach((element) {
-      if (_hourFormat == HourFormat.h12){
+      if (_hourFormat == HourFormatType.h12){
         listToReturn.add(DateFormat.jm().format(element));
       }else{
         listToReturn.add(DateFormat.Hm().format(element));
@@ -89,6 +89,6 @@ class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
   }
 }
 
-enum HourFormat { h24, h12 }
+enum HourFormatType { h24, h12 }
 
 enum CalculatingType { GoToSleep, WakeUp }
