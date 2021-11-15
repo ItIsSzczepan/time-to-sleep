@@ -34,38 +34,38 @@ class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
   void submit(DateTime? time, CalculatingType? calculatingType) {
     CalculatingType type = calculatingType ?? _calculatingType;
 
-    List<DateTime> dateTimeList = _calculateHour(time ?? _time, type == CalculatingType.WakeUp);
+    List<DateTime> dateTimeList =
+        _calculateHour(time ?? _time, type == CalculatingType.WakeUp);
     List<String> hoursList = _convertHoursToString(dateTimeList);
     _emitResultState(hoursList, type);
   }
 
-  void goToSleepNow(){
+  void goToSleepNow() {
     submit(_dateTimeNow(), CalculatingType.GoToSleep);
   }
 
-
-  List<DateTime> _calculateHour(DateTime time, bool? subtract){
+  List<DateTime> _calculateHour(DateTime time, bool? subtract) {
     List<DateTime> list = [];
 
-    for(int i=0; i<4; i++){
-      if(subtract ?? false){
-        list.add(time.subtract(Duration(minutes: 90*(3+i))));
-        if(i==3) list = list.reversed.toList();
-      }else{
-        list.add(time.add(Duration(minutes: 90*(3+i))));
+    for (int i = 0; i < 4; i++) {
+      if (subtract ?? false) {
+        list.add(time.subtract(Duration(minutes: 90 * (3 + i))));
+        if (i == 3) list = list.reversed.toList();
+      } else {
+        list.add(time.add(Duration(minutes: 90 * (3 + i))));
       }
     }
 
     return list;
   }
 
-  List<String> _convertHoursToString(List<DateTime> list){
+  List<String> _convertHoursToString(List<DateTime> list) {
     List<String> listToReturn = [];
 
     list.forEach((element) {
-      if (_hourFormat == HourFormatType.h12){
+      if (_hourFormat == HourFormatType.h12) {
         listToReturn.add(DateFormat.jm().format(element));
-      }else{
+      } else {
         listToReturn.add(DateFormat.Hm().format(element));
       }
     });
@@ -73,7 +73,7 @@ class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
     return listToReturn;
   }
 
-  DateTime _dateTimeNow(){
+  DateTime _dateTimeNow() {
     return clock.now();
   }
 
@@ -83,8 +83,9 @@ class WakeUpCalculatorCubit extends Cubit<WakeUpCalculatorState> {
     emit(newUpdateState);
   }
 
-  void _emitResultState(List<String> list, CalculatingType calculatingType){
-    WakeUpCalculatorResult newResultState = WakeUpCalculatorResult(list, calculatingType);
+  void _emitResultState(List<String> list, CalculatingType calculatingType) {
+    WakeUpCalculatorResult newResultState =
+        WakeUpCalculatorResult(list, calculatingType);
     emit(newResultState);
   }
 }

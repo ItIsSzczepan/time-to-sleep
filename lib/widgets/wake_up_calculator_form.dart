@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:projekty/cubit/wake_up_calculator_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -170,7 +171,7 @@ class WakeUpCalculatorForm extends StatelessWidget {
                           }
                         },
                         child: Text(
-                          "${time.hour}:${time.minute}",
+                          hourFormat == HourFormatType.h24 ? DateFormat.Hm().format(time) : DateFormat.jm().format(time),
                           style: TextStyle(fontSize: 20.0),
                         )),
                     TextButton(
